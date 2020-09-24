@@ -4,12 +4,12 @@ const { NubanGenerator } = require('../lib/nuban-generator')
 
 const router = express.Router();
 
-const nubanController = async (req, res) => {
+const nubanController = (req, res) => {
     let nubans;
 
     try {
         const { account_number, bank_code } = req.body;
-        nubans = await NubanGenerator.generateNubans(account_number, bank_code);
+        nubans = NubanGenerator.generateNubans(account_number, bank_code);
     } catch (err) {
         return res.status(400).json({
             status: 'error',
